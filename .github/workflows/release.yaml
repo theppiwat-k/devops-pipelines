@@ -2,12 +2,29 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version"
+        required: true
+        type: string
+
+      environment:
+        description: "Deploy environment"
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v5
 
-      - run: echo "Release from main"
+      - name: Show release information
+        run: |
+          echo "Version: ${{ inputs.version }}"
+          echo "Environment: ${{ inputs.environment }}"
