@@ -1,8 +1,8 @@
-name: CI PIPELINE
+name: CI
 
 on:
-  push:
-    branch: [ main ]
+  pull_request:
+    branch: [ dev ]
 
 jobs:
   build:
